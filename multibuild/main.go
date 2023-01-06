@@ -18,7 +18,7 @@ func build(ctx context.Context) error {
     fmt.Println("Building with Dagger")
 
     // define build matrix
-    oses := []string{"linux", "darwin"}
+    oses := []string{"linux", "darwin", "windows"}
     arches := []string{"amd64", "arm64"}
     goVersions := []string{"1.18", "1.19"}
 
