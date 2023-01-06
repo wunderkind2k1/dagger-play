@@ -19,9 +19,13 @@ func main() {
 
 	container = container.WithEnvVariable("FOO", "bar")
 
-	out, err := container.Exec(dagger.ContainerExecOpts{
-		Args: []string{"sh", "-c", "echo $FOO"},
-	}).Stdout(ctx)
+	out, err := container.WithExec([]string{"sh", "-c", "echo $FOO"}).Stdout(ctx)
+	if err != nil {
+		panic(err)
+	}
+	fmt.Println(out)
+
+	out, err = container.WithExec([]string{"sh", "-c", "uname -a"}).Stdout(ctx)
 	if err != nil {
 		panic(err)
 	}
